@@ -1,11 +1,22 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import styled from '@emotion/styled'
+import GlobStyle from 'components/Common/GlobalStyle'
+import About from 'components/Main/About'
+import Footer from 'components/Common/Footer'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`
 
 const IndexPage = () => {
   return (
-    <div>
-      <Link to="/info">To Info</Link>
-    </div>
+    <Container>
+      <GlobStyle />
+      <About />
+      <Footer />
+    </Container>
   )
 }
 
