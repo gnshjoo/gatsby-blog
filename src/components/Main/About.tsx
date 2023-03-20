@@ -16,15 +16,29 @@ const Wrapper = styled.div`
   width: 768px;
   height: 400px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 300px;
+    padding: 0 20px;
+  }
 `
 const SubTitle = styled.div`
   font-size: 14px;
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
 `
 
 const Title = styled.div`
   margin-top: 5px;
   font-size: 18px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `
 const About: FunctionComponent = () => {
   return (
