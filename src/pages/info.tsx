@@ -1,6 +1,6 @@
 import React from 'react'
-import Text from 'components/Text'
 import { graphql } from 'gatsby'
+import { Global, css } from '@emotion/react'
 
 type InfoPageProps = {
   data: {
@@ -23,9 +23,15 @@ const InfoPage = ({
 }: InfoPageProps) => {
   return (
     <div>
-      <Text text={title} />
-      <Text text={description} />
-      <Text text={author} />
+      <Global
+        styles={css`
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-size: 20px;
+        `}
+      />
+      {title} {description} {author}
     </div>
   )
 }
