@@ -2,6 +2,23 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import PostItem from './PostItem'
 
+export type PostType = {
+  node: {
+    id: string
+    frontmatter: {
+      title: string
+      summary: string
+      date: string
+      categories: string[]
+      thumbnail: string
+    }
+  }
+}
+
+type PostListProps = {
+  posts: PostType[]
+}
+
 const PostListWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -28,13 +45,12 @@ const POST_ITEM_DATA = {
   link: '<https://www.google.co.kr/>',
 }
 
-const PostList: FunctionComponent = function () {
+const PostList: FunctionComponent<PostListProps> = function ({ posts }) {
   return (
     <PostListWrapper>
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
+      {posts.map(({ node: { id, frontmatter } }: PostType) => (
+        <PostItem {...frontmatter} link="https://www.google.co.kr/" key={id} />
+      ))}
     </PostListWrapper>
   )
 }
