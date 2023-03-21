@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
+import GlobStyle from 'components/Common/GlobalStyle'
 import About from 'components/Main/About'
+import Footer from 'components/Common/Footer'
 import CategoryList, { CategoryListProps } from 'components/Main/CategoryList'
 import PostList from 'components/Main/PostList'
 import { graphql } from 'gatsby'
 import { PostListItemType } from 'types/PostItem.types'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
-import Template from 'components/Common/Template'
 
 const Container = styled.div`
   display: flex;
@@ -78,14 +79,16 @@ const IndexPage = ({
   )
 
   return (
-    <Template>
+    <Container>
+      <GlobStyle />
       <About profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
-      <PostList selectedCategory={selectedCategory} posts={edges} />
-    </Template>
+      <PostList posts={edges} selectedCategory={selectedCategory} />
+      <Footer />
+    </Container>
   )
 }
 
@@ -99,9 +102,6 @@ export const getPostList = graphql`
       edges {
         node {
           id
-          fields {
-            slug
-          }
           frontmatter {
             title
             summary
