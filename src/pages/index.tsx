@@ -9,12 +9,7 @@ import { graphql } from 'gatsby'
 import { PostListItemType } from 'types/PostItem.types'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`
+import Template from 'components/Common/Template'
 
 type IndexPageProps = {
   location: {
@@ -79,16 +74,14 @@ const IndexPage = ({
   )
 
   return (
-    <Container>
-      <GlobStyle />
+    <Template>
       <About profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
       <PostList posts={edges} selectedCategory={selectedCategory} />
-      <Footer />
-    </Container>
+    </Template>
   )
 }
 
@@ -101,6 +94,9 @@ export const getPostList = graphql`
     ) {
       edges {
         node {
+          fields {
+            slug
+          }
           id
           frontmatter {
             title
